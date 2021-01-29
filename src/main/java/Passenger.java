@@ -1,6 +1,6 @@
 public class Passenger {
 
-    //Each passenger bag weighs the same
+    //Each passenger bag weighs the same (15kg)
     //Planes reserve half of their total weight for passenger bags
     //The weight of bag per person is the weight reserved for passenger bags divided by the capacity
     //Passengers exist for a single flight only

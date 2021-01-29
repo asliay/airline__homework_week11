@@ -11,7 +11,7 @@ public class Flight {
 
     public Flight(Plane plane, String flightNumber, String destination, String departureAirport, String departureTime) {
         this.passengers = new ArrayList<Passenger>();
-        this.plane = new Plane(PlaneType.BOEING747);
+        this.plane = new Plane(PlaneType.TESTPLANE);
         this.flightNumber = flightNumber;
         this.destination = destination;
         this.departureAirport = departureAirport;
@@ -40,4 +40,13 @@ public class Flight {
     }
 
 
+    public int checkAvailableSeats() {
+        return ((this.plane.getCapacity()) - passengerCount());
+    }
+
+    public void bookPassenger(Passenger newPassenger) {
+        if (checkAvailableSeats() >= 1) {
+            this.passengers.add(newPassenger);
+        }
+    }
 }
