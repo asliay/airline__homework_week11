@@ -2,6 +2,10 @@ import java.util.ArrayList;
 
 public class Flight {
 
+    //EXTENSION:
+    //Refactor the Flight's departure time to use the Date class
+    // (HINT: Look into Type Migration in IntelliJ to refactor faster)
+
     private ArrayList<Passenger> passengers;
     private Plane plane;
     private String flightNumber;
