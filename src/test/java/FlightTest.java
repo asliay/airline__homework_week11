@@ -11,12 +11,13 @@ public class FlightTest {
     private Passenger passenger3;
     private Plane plane;
 
+
     @Before
     public void setUp() {
         passenger1 = new Passenger("Amos Burton", 2);
         passenger2 = new Passenger("Naomi Nagata", 1);
         passenger3 = new Passenger("James Holden", 1);
-        plane = new Plane(PlaneType.TESTPLANE);
+        plane = new Plane(PlaneType.SMALLPLANE);
         flight = new Flight(plane, "FJ012", "TYC", "CER", "2120");
     }
 

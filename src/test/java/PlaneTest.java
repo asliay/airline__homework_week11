@@ -9,12 +9,12 @@ public class PlaneTest {
 
     @Before
     public void setUp() {
-        plane = new Plane(PlaneType.TESTPLANE);
+        plane = new Plane(PlaneType.SMALLPLANE);
     }
 
     @Test
     public void planeHasType() {
-        assertEquals(PlaneType.TESTPLANE, plane.getPlaneType());
+        assertEquals(PlaneType.SMALLPLANE, plane.getPlaneType());
     }
 
     @Test
@@ -24,6 +24,6 @@ public class PlaneTest {
 
     @Test
     public void planeHasWeight() {
-        assertEquals(5, plane.getWeight());
+        assertEquals(40, plane.getWeight());
     }
 }
