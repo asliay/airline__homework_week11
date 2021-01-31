@@ -16,13 +16,13 @@ public class Passenger {
 
     private String name;
     private int numberOfBags;
-    private Random seatNumber;
+    private int seatNumber;
     private Flight bookedFlight;
 
     public Passenger(String name, int numberOfBags) {
         this.name = name;
         this.numberOfBags = numberOfBags;
-        this.seatNumber = new Random();
+        this.seatNumber = 0;
         this.bookedFlight = null;
 
     }
@@ -41,5 +41,14 @@ public class Passenger {
 
     public void setNumberOfBags(int numberOfBags) {
         this.numberOfBags = numberOfBags;
+    }
+
+    public int getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber() {
+        int upperbound = 5;
+
     }
 }

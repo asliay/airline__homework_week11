@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class Flight {
 
@@ -23,8 +24,12 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
+    public ArrayList<Passenger> getPassengersList() {
+        return this.passengers;
+    }
+
     public Plane getPlane() {
-        return plane;
+        return this.plane;
     }
 
     public String getFlightNumber() {
@@ -47,7 +52,6 @@ public class Flight {
         return this.passengers.size();
     }
 
-
     public int checkAvailableSeats() {
         return ((this.plane.getCapacity()) - passengerCount());
     }
@@ -55,7 +59,10 @@ public class Flight {
     public void bookPassenger(Passenger newPassenger) {
         if (checkAvailableSeats() >= 1) {
             this.passengers.add(newPassenger);
+
         }
     }
+
+
 
 }

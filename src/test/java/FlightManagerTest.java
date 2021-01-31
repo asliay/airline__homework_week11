@@ -7,6 +7,8 @@ public class FlightManagerTest {
 
     private Flight flight1;
     private Flight flight2;
+    private FlightManager flightManager1;
+    private FlightManager flightManager2;
     private Passenger passenger1;
     private Passenger passenger2;
     private Passenger passenger3;
@@ -15,42 +17,47 @@ public class FlightManagerTest {
 
     @Before
     public void setUp() {
-
         passenger1 = new Passenger("Amos Burton", 2);
         passenger2 = new Passenger("Naomi Nagata", 1);
         passenger3 = new Passenger("James Holden", 1);
-        plane1 = new Plane(PlaneType.SMALLPLANE);
-        plane2 = new Plane(PlaneType.BOEING747);
+        plane1 = new Plane(PlaneType.SMALLPLANE); // capacity 2 weight 40
+        plane2 = new Plane(PlaneType.BOEING747); // capacity 20 weight 800
         flight1 = new Flight(plane1, "FJ012", "TYC", "CER", "2120");
         flight2 = new Flight(plane2, "FJ012", "TYC", "CER", "2120");
-
-
+        flight2.bookPassenger(passenger1);
+        flight2.bookPassenger(passenger2);
+        flight2.bookPassenger(passenger3);
+        flightManager1 = new FlightManager(flight1);
+        flightManager2 = new FlightManager(flight2); // 3 passengers, 4 bags
     }
-
-    // Should have methods to:
-    // calculate how much baggage weight should be reserved for each passenger for a flight
 
     @Test
-    public void canCalculatePassengerWeightAllowance(){
-        int passengerWeightAllowance = FlightManager.passengerWeightAllowance(flight1);
-        assertEquals(10, passengerWeightAllowance);
+    public void canGetTotalWeightReservedForBaggage() {
+        assertEquals(400, flightManager2.getFlightBaggageWeight());
     }
 
-    // calculate how much baggage weight is booked by passengers of a flight
+    @Test
+    public void canGetIndividualBagWeightAllowance() {
+        int result = flightManager2.getBaggageWeightAllowance();
+        assertEquals(20, result);
+    }
+
+    @Test
+    public void canCalculatePassengerBaggageWeight(){
+        int result = flightManager2.getPassengerBaggageWeight(passenger1);
+        assertEquals(40, result);
+    }
+
     @Test
     public void canCalculateBookedWeight() {
-        flight1.bookPassenger(passenger1);
-        flight1.bookPassenger(passenger2);
-        assertEquals(20, FlightManager.bookedWeight(flight1));
+        assertEquals(80, flightManager2.getBookedBaggageWeight());
     }
-    // calculate how much overall weight reserved for baggage remains for a flight
-//    @Test
-//    public void canCalculateRemainingBaggageAllowance() {
-//        flight2.bookPassenger(passenger1);
-//        flight2.bookPassenger(passenger2);
-//        flight2.bookPassenger(passenger3);
-//        assertEquals(10, FlightManager.remainingWeightAllowance(flight2));
-//    }
+
+
+    @Test
+    public void canCalculateRemainingBaggageAllowance() {
+        assertEquals(320, flightManager2.remainingWeightAllowance());
+    }
 
     // Super Extensions
     // Write a method in FlightManager that uses a Binary Search to find a

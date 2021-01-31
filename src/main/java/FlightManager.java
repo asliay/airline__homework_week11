@@ -1,34 +1,52 @@
-public class FlightManager {
+import java.util.ArrayList;
 
-    // Should have methods to:
-    // calculate how much baggage weight should be reserved for each passenger for a flight
-    // calculate how much baggage weight is booked by passengers of a flight
-    // calculate how much overall weight reserved for baggage remains for a flight
+public class FlightManager {
 
     // Super Extensions
     // Write a method in FlightManager that uses a Binary Search to find a
     // Passenger by seat number. Remember to use the previous method to sort the list first
+    private Flight flight;
 
-    public FlightManager() {
-
+    public FlightManager(Flight flight) {
+        this.flight = flight;
     }
 
-    public static int passengerWeightAllowance(Flight flight) {
+    // Half the plane weight should be reserved for passenger baggage - this method calculates that number.
+    public int getFlightBaggageWeight() {
+        int planeWeight = this.flight.getPlane().getWeight();
+        return planeWeight / 2;
+    }
+
+    // Using the given assumption that all bags weigh the same, calculates bag weight according to the
+    // reserved weight divided by the total plane capacity.
+    public int getBaggageWeightAllowance() {
         int planeWeight = flight.getPlane().getWeight();
         int planeCapacity = flight.getPlane().getCapacity();
         return (planeWeight / 2) / planeCapacity;
     }
 
-    public static int bookedWeight(Flight flight) {
-        int weightAllowance = passengerWeightAllowance(flight);
-        int bookedPassengers = flight.passengerCount();
-        return weightAllowance * bookedPassengers;
-
+    // Calculates how much baggage weight is used up by a specific passenger and their number of bags
+    public int getPassengerBaggageWeight(Passenger passenger) {
+        int capacity = this.flight.getPlane().getCapacity();
+        int bagsWeight = getFlightBaggageWeight() / capacity;
+        return passenger.getBagCount() * bagsWeight;
     }
 
-    public static int remainingWeightAllowance(Flight flight) {
-        int weightAllowance = passengerWeightAllowance(flight);
-        int bookedWeight = bookedWeight(flight);
-        return weightAllowance - bookedWeight;
+    // Calculates total baggage weight of all customers currently booked onto a flight
+    public int getBookedBaggageWeight() {
+        int totalBaggageWeight = 0;
+        ArrayList<Passenger> bookedPassengers = this.flight.getPassengersList();
+        for (Passenger passenger : bookedPassengers) {
+            totalBaggageWeight += getPassengerBaggageWeight(passenger);
+        }
+        return totalBaggageWeight;
     }
+
+    // Calculates remaining weight for baggage
+    public int remainingWeightAllowance() {
+        int baggageAllowance = getFlightBaggageWeight();
+        int bookedBaggage = getBookedBaggageWeight();
+        return baggageAllowance - bookedBaggage;
+    }
+
 }
