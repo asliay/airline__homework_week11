@@ -24,6 +24,7 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
+    // Getter for list of passengers on flight
     public ArrayList<Passenger> getPassengersList() {
         return this.passengers;
     }
@@ -56,8 +57,19 @@ public class Flight {
         return ((this.plane.getCapacity()) - passengerCount());
     }
 
+    // Removes and assigns seat number to passener from plane array list of seat numbers
+    public void assignSeatNumber(Passenger passenger) {
+        ArrayList<Integer> seats = this.plane.getSeatNumbers();
+        int passengerSeat = seats.remove(0);
+        passenger.setSeatNumber(passengerSeat);
+    }
+
+    // Checks available seats, assigns seat number, booked flight to passenger and adds them to passenger list for
+    // flight
     public void bookPassenger(Passenger newPassenger) {
         if (checkAvailableSeats() >= 1) {
+            assignSeatNumber(newPassenger);
+            newPassenger.setBookedFlight(this);
             this.passengers.add(newPassenger);
 
         }

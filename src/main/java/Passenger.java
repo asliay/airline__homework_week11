@@ -16,7 +16,7 @@ public class Passenger {
 
     private String name;
     private int numberOfBags;
-    private int seatNumber;
+    private int seatNumber; // assigned randomly only when passenger is booked onto flight
     private Flight bookedFlight;
 
     public Passenger(String name, int numberOfBags) {
@@ -47,8 +47,16 @@ public class Passenger {
         return seatNumber;
     }
 
-    public void setSeatNumber() {
-        int upperbound = 5;
+    public void setSeatNumber(int seatNumber) {
+        this.seatNumber = seatNumber;
 
+    }
+
+    public Flight getBookedFlight() {
+        return this.bookedFlight;
+    }
+
+    public void setBookedFlight(Flight bookedFlight) {
+        this.bookedFlight = bookedFlight;
     }
 }
