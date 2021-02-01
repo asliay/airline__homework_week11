@@ -1,12 +1,6 @@
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
 
 public class Flight {
-
-    //EXTENSION:
-    //Refactor the Flight's departure time to use the Date class
-    // (HINT: Look into Type Migration in IntelliJ to refactor faster)
 
     private ArrayList<Passenger> passengers;
     private Plane plane;
@@ -57,7 +51,7 @@ public class Flight {
         return ((this.plane.getCapacity()) - passengerCount());
     }
 
-    // Removes and assigns seat number to passener from plane array list of seat numbers
+    // Removes and assigns seat number to passenger from plane array list of seat numbers
     public void assignSeatNumber(Passenger passenger) {
         ArrayList<Integer> seats = this.plane.getSeatNumbers();
         int passengerSeat = seats.remove(0);

@@ -2,9 +2,6 @@ import java.util.ArrayList;
 
 public class FlightManager {
 
-    // Super Extensions
-    // Write a method in FlightManager that uses a Binary Search to find a
-    // Passenger by seat number. Remember to use the previous method to sort the list first
     private Flight flight;
 
     public FlightManager(Flight flight) {
